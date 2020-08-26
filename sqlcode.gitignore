@@ -1,0 +1,7 @@
+create user deb identified by deb123;                          /*identified = password*/
+grant create session to deb;                                  /*logon will be denied if we don't grant the create session*/
+select tablespace_name, status from dba_tablespaces ;          /*check the available tablespaces*/
+alter user deb default TABLESPACE example;                     /*changing the default tablespaces (not mandatory), example is my tablespace name*/
+alter user deb quota 5m on example ;                           /*user deb can create upto 5mb of data into table space*/
+select username, tablespace_name, bytes, max_bytes from dba_ts_quotas;        /*to cross check the allocated tablespace and all,dba_ts_quotas is data dictionary*/
+drop user deb CASCADE;                                         /*use cascade to delete all the objects created by the user deb*/
