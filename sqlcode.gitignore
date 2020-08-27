@@ -5,3 +5,7 @@ alter user deb default TABLESPACE example;                     /*changing the de
 alter user deb quota 5m on example ;                           /*user deb can create upto 5mb of data into table space*/
 select username, tablespace_name, bytes, max_bytes from dba_ts_quotas;        /*to cross check the allocated tablespace and all,dba_ts_quotas is data dictionary*/
 drop user deb CASCADE;                                         /*use cascade to delete all the objects created by the user deb*/
+
+
+/* extra notes : grant create table to deb ; - we have to grant system privileges or else it will show ORA-01031: insufficient privileges
+ note - revoking system privileges won't revoke permissions from subsequent user,but revoking object privileges will*/
